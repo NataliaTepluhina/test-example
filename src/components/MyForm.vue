@@ -1,11 +1,12 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
-defineProps({
-  msg: String,
-});
+const username = ref("");
+const password = ref("");
 
-const count = ref(0);
+const isFormValid = computed(
+  () => username.value.length && password.value.length
+);
 </script>
 
 <template>
@@ -13,13 +14,13 @@ const count = ref(0);
     <form @submit.prevent>
       <label for="username">
         Login
-        <input type="text" id="username" />
+        <input v-model="username" type="text" id="username" />
       </label>
       <label for="password">
         Password
-        <input type="password" id="password" />
+        <input v-model="password" type="password" id="password" />
       </label>
-      <button type="submit">Submit</button>
+      <button :disabled="!isFormValid" type="submit">Submit</button>
     </form>
   </section>
 </template>
