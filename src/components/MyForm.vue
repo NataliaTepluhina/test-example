@@ -6,6 +6,7 @@ const username = ref('')
 const password = ref('')
 const loading = ref(false)
 const error = ref('')
+const loggedIn = ref(false)
 
 const isFormValid = computed(
   () => username.value.length && password.value.length
@@ -18,6 +19,7 @@ async function submitForm() {
   error.value = ''
   try {
     await sendFormData(username.value, password.value)
+    loggedIn.value = true
   } catch (e) {
     error.value = e
   } finally {
@@ -29,7 +31,7 @@ async function submitForm() {
 <template>
   <section>
     <div class="error">{{ error }}</div>
-    <form @submit.prevent="submitForm">
+    <form v-if="!loggedIn" @submit.prevent="submitForm">
       <label for="username">
         Login
         <input v-model="username" type="text" id="username" />
@@ -42,6 +44,7 @@ async function submitForm() {
         {{ buttonText }}
       </button>
     </form>
+    <div v-else>Welcome, {{ username }}!</div>
   </section>
 </template>
 
