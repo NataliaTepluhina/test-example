@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { sendFormData } from '../fakeApi'
+import ConfirmButton from './ConfirmButton.vue'
 
 const username = ref('')
 const password = ref('')
@@ -31,7 +32,7 @@ async function submitForm() {
 <template>
   <section>
     <div class="error">{{ error }}</div>
-    <form v-if="!loggedIn" @submit.prevent="submitForm">
+    <form v-if="!loggedIn">
       <label for="username">
         Login
         <input v-model="username" type="text" id="username" />
@@ -40,9 +41,11 @@ async function submitForm() {
         Password
         <input v-model="password" type="password" id="password" />
       </label>
-      <button :disabled="!isFormValid || loading" type="submit">
-        {{ buttonText }}
-      </button>
+      <ConfirmButton
+        :disabled="!isFormValid || loading"
+        :buttonText="buttonText"
+        @confirm="submitForm"
+      />
     </form>
     <div v-else>Welcome, {{ username }}!</div>
   </section>
