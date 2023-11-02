@@ -31,15 +31,25 @@ async function submitForm() {
 
 <template>
   <section>
-    <div class="error">{{ error }}</div>
-    <form v-if="!loggedIn">
+    <div class="error" data-testid="error">{{ error }}</div>
+    <form v-if="!loggedIn" data-testid="form">
       <label for="username">
         Login
-        <input v-model="username" type="text" id="username" />
+        <input
+          v-model="username"
+          type="text"
+          id="username"
+          data-testid="username"
+        />
       </label>
       <label for="password">
         Password
-        <input v-model="password" type="password" id="password" />
+        <input
+          v-model="password"
+          type="password"
+          id="password"
+          data-testid="password"
+        />
       </label>
       <ConfirmButton
         :disabled="!isFormValid || loading"
@@ -47,7 +57,7 @@ async function submitForm() {
         @confirm="submitForm"
       />
     </form>
-    <div v-else>Welcome, {{ username }}!</div>
+    <div v-else data-testid="success-message">Welcome, {{ username }}!</div>
   </section>
 </template>
 
