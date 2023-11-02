@@ -5,6 +5,6 @@ export const sendFormData = (username, password) =>
         username === 'Natalia' && password === 'password'
           ? resolve()
           : reject('Username or password is incorrect. Please try again'),
-      1500
+      500
     )
   )
