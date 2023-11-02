@@ -1,6 +1,9 @@
 import { shallowMount } from '@vue/test-utils'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import MyForm from '../src/components/MyForm.vue'
+import * as api from '../src/fakeApi'
+
+const mockSendFormData = vi.spyOn(api, 'sendFormData')
 
 describe('MyForm', () => {
   let wrapper
@@ -30,8 +33,6 @@ describe('MyForm', () => {
       })
 
       describe('on success', () => {
-        it.todo('renders `Submit` text on the button')
-
         it.todo('renders welcome text')
 
         it.todo('does not render form')

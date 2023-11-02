@@ -31,7 +31,7 @@ async function submitForm() {
 
 <template>
   <section>
-    <div class="error">{{ error }}</div>
+    <div v-if="error" class="error">{{ error }}</div>
     <form v-if="!loggedIn">
       <label for="username">
         Login
