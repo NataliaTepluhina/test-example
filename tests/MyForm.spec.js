@@ -1,6 +1,5 @@
-import { flushPromises, shallowMount } from '@vue/test-utils'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { nextTick } from 'vue'
+import { shallowMount } from '@vue/test-utils'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import MyForm from '../src/components/MyForm.vue'
 import ConfirmButton from '../src/components/ConfirmButton.vue'
 import * as api from '../src/fakeApi'
@@ -101,20 +100,28 @@ describe('MyForm', () => {
       })
 
       describe('on error', () => {
+        const errorMessage = 'Houston, we have a problem'
         beforeEach(() => {
-          mockSendFormData.mockRejectedValue('Error')
+          mockSendFormData.mockRejectedValue(errorMessage)
           findConfirmButton().vm.$emit('confirm')
         })
 
         it('renders `Submit` text on the button', async () => {
-          console.log(wrapper.html())
+          expect(findConfirmButton().props('buttonText')).toBe('Submit')
         })
 
-        it.todo('does not render welcome text')
+        it('does not render welcome text', () => {
+          expect(findWelcomeMessage().exists()).toBe(false)
+        })
 
-        it.todo('renders a form')
+        it('renders a form', () => {
+          expect(findForm().exists()).toBe(true)
+        })
 
-        it.todo('renders an error message')
+        it('renders an error message', () => {
+          expect(findError().exists()).toBe(true)
+          expect(findError().text()).toBe(errorMessage)
+        })
       })
     })
   })
