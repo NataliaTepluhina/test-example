@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { shallowMount, mount } from '@vue/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import MyForm from '../src/components/MyForm.vue'
 import * as api from '../src/fakeApi'
 
@@ -11,6 +11,10 @@ describe('MyForm', () => {
   const mountComponent = () => {
     wrapper = shallowMount(MyForm)
   }
+
+  afterEach(() => {
+    wrapper.unmount()
+  })
 
   it.todo('renders the form by default')
 
