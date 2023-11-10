@@ -1,6 +1,7 @@
 import { shallowMount, mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import MyForm from '../src/components/MyForm.vue'
+import ConfirmButton from '..src/components/ConfirmButton.vue'
 import * as api from '../src/fakeApi'
 
 const mockSendFormData = vi.spyOn(api, 'sendFormData')
