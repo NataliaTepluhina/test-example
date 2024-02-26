@@ -31,8 +31,8 @@ async function submitForm() {
 
 <template>
   <section>
-    <div v-if="error" class="error">{{ error }}</div>
-    <form v-if="!loggedIn">
+    <div v-if="error" class="error" data-testid="error">{{ error }}</div>
+    <form v-if="!loggedIn" data-testid="form">
       <label for="username">
         Login
         <input v-model="username" type="text" id="username" />
@@ -47,7 +47,7 @@ async function submitForm() {
         @confirm="submitForm"
       />
     </form>
-    <div v-else>Welcome, {{ username }}!</div>
+    <div v-else data-testid="welcome-text">Welcome, {{ username }}!</div>
   </section>
 </template>
 
