@@ -11,10 +11,9 @@ describe('MyForm', () => {
 
   const findForm = () => wrapper.find('[data-testid="form"]')
   const findError = () => wrapper.find('[data-testid="error"]')
-  const findWelcomeMessage = () =>
-    wrapper.find('[data-testid="welcome-message"]')
-  const findUsernameInput = () => wrapper.find('[data-testid="username"]')
-  const findPasswordInput = () => wrapper.find('[data-testid="password"]')
+  const findWelcomeMessage = () => wrapper.find('[data-testid="welcome-text"]')
+  const findUsernameInput = () => wrapper.find('#username')
+  const findPasswordInput = () => wrapper.find('#password')
   const findConfirmButton = () => wrapper.findComponent(ConfirmButton)
 
   const mountComponent = () => {
