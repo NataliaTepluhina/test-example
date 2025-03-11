@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount, mount, enableAutoUnmount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import MyForm from '../src/components/MyForm.vue'
 import ConfirmButton from '../src/components/ConfirmButton.vue'
@@ -8,14 +8,11 @@ const mockSendFormData = vi.spyOn(api, 'sendFormData')
 
 describe('MyForm', () => {
   let wrapper
+  enableAutoUnmount(beforeEach)
 
   const mountComponent = () => {
     wrapper = shallowMount(MyForm)
   }
-
-  afterEach(() => {
-    wrapper.unmount()
-  })
 
   it.todo('renders the form by default')
 
