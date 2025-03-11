@@ -57,7 +57,7 @@ async function submitForm() {
         @confirm="submitForm"
       />
     </form>
-    <div v-else data-testid="welcome-message">Welcome, {{ username }}!</div>
+    <div v-else data-testid="welcome-text">Welcome, {{ username }}!</div>
   </section>
 </template>
 
